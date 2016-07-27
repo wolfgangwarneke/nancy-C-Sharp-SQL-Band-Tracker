@@ -13,6 +13,7 @@ This is a project for my C# class at Epicodus. Remember than one show? Me either
 | Behavior        | Input           | Outcome  |
 | ------------- |:-------------:| -----:|
 ### Test Specifications
+_(names used in actual tests may vary. the more puns = the merrier)_
 #### Band Tests
 | Test        | Method | Input           | Output (or outcome)  |
 | ------------- |:----:|:-------------:| -----:|

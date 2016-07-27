@@ -53,6 +53,16 @@ namespace BandTracker
         saveThisBandToo.DeleteThis();
         Assert.Equal(1, Band.GetAll().Count);
       }
+    [Fact]
+      public void Test_Find_FindBandByDataBaseId()
+      {
+        Band saveThisBand = new Band("Catnip Stevens");
+        saveThisBand.Save();
+        Band expectedBandToFind = Band.GetAll()[0];
+        int idToFindBy = expectedBandToFind.GetId();
+        Band foundBand = Band.Find(idToFindBy);
+        Assert.Equal(expectedBandToFind, foundBand);
+      }
     public void Dispose()
     {
       Band.DeleteAll();

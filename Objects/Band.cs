@@ -84,35 +84,35 @@ namespace BandTracker
        conn.Close();
       }
     }
-    // public static Band Find (int bandId)
-    // {
-    //   List<Band> matchingBands = new List<Band> {};
-    //   SqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //   SqlDataReader rdr = null;
-    //   SqlCommand cmd = new SqlCommand ("SELECT * FROM bands WHERE id = @BandId;", conn);
-    //   SqlParameter nameParameter = new SqlParameter ();
-    //   nameParameter.ParameterName = "@BandId";
-    //   nameParameter.Value = bandId;
-    //   cmd.Parameters.Add(nameParameter);
-    //   rdr = cmd.ExecuteReader();
-    //   while (rdr.Read())
-    //   {
-    //     int id = rdr.GetInt32(0);
-    //     string name = rdr.GetString(1);
-    //     Band newBand = new Band (name, id);
-    //     matchingBands.Add(newBand);
-    //   }
-    //   if (rdr != null)
-    //   {
-    //     rdr.Close();
-    //   }
-    //   if (conn != null)
-    //   {
-    //     conn.Close();
-    //   }
-    //   return matchingBands[0];
-    // }
+    public static Band Find (int bandId)
+    {
+      List<Band> matchingBands = new List<Band> {};
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlDataReader rdr = null;
+      SqlCommand cmd = new SqlCommand ("SELECT * FROM bands WHERE id = @BandId;", conn);
+      SqlParameter nameParameter = new SqlParameter ();
+      nameParameter.ParameterName = "@BandId";
+      nameParameter.Value = bandId;
+      cmd.Parameters.Add(nameParameter);
+      rdr = cmd.ExecuteReader();
+      while (rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        Band newBand = new Band (name, id);
+        matchingBands.Add(newBand);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return matchingBands[0];
+    }
     // public static Band FindByName (string bandName)
     // {
     //   List<Band> matchingBands = new List<Band> {};
