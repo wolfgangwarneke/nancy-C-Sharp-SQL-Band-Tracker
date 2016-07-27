@@ -43,6 +43,26 @@ namespace BandTracker
         Band.DeleteAll();
         Assert.Equal(0, Band.GetAll().Count);
       }
+    [Fact]
+      public void Test_DeleteThis_DeletesBandWhichCallsDeleteThis()
+      {
+        Band saveThisBand = new Band("DJ Meow Mix");
+        saveThisBand.Save();
+        Band saveThisBandToo = new Band("Chausie and the Banshees");
+        saveThisBandToo.Save();
+        saveThisBandToo.DeleteThis();
+        Assert.Equal(1, Band.GetAll().Count);
+      }
+    [Fact]
+      public void Test_DeleteThis_DeletesBandWhichCallsDeleteThis()
+      {
+        Band saveThisBand = new Band("DJ Meow Mix");
+        saveThisBand.Save();
+        Band saveThisBandToo = new Band("Chausie and the Banshees");
+        saveThisBandToo.Save();
+        saveThisBandToo.DeleteThis();
+        Assert.Equal(1, Band.GetAll().Count);
+      }
     public void Dispose()
     {
       Band.DeleteAll();
