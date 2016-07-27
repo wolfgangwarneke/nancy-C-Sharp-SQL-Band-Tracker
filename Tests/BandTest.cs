@@ -99,6 +99,10 @@ namespace BandTracker
       saveThisBand.Save();
       Venue testVenue = new Venue("Meow That's What I Call Mewsic");
       testVenue.Save();
+      saveThisBand.AddVenueToHistory("Meow That's What I Call Mewsic");
+      List<Venue> testVenueList = saveThisBand.GetVenuesPlayed();
+      List<Venue> expectedVenueList = new List<Venue> { testVenue };
+      Assert.Equal(expectedVenueList, testVenueList);
     }
     public void Dispose()
     {
