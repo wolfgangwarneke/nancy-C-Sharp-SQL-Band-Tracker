@@ -229,7 +229,6 @@ namespace BandTracker
         string venueName = rdr.GetString(1);
         Venue newVenue = new Venue(venueName, venueId);
         venuesPlayed.Add(newVenue);
-        Console.WriteLine("reading");
       }
 
       if (rdr != null)

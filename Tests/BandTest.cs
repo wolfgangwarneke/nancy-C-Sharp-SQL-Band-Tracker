@@ -128,6 +128,7 @@ namespace BandTracker
       conn.Open();
       SqlCommand cmd = new SqlCommand ("DELETE FROM bands_venues;", conn);
       cmd.ExecuteNonQuery();
+      conn.Close();
     }
   }
 }
