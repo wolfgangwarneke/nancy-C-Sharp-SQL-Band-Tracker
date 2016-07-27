@@ -1,7 +1,7 @@
 <ul>
 @foreach(var venue in Model) {
-  <li>@venue.GetName() <a href="/venues/bands/@venue.GetId()">see bands who have played a show at @venue.GetName()</a></li>
+  <li>@venue.GetName() /// <a href="/venues/bands/@venue.GetId()">see bands who have played a show at @venue.GetName()</a> /// <a href="/venues/delete/@venue.GetId()">REMOVE THIS VENUE</a> ///</li>
 }
 </ul>
-<a href="venues/add">Add a venue</a>
+<a href="/venues/add">Add a venue</a>
 <a href="/">Go home</a>

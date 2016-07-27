@@ -84,6 +84,16 @@ namespace BandTracker
         List<Band> bandModel = Band.GetAll();
         return View["bands.cshtml", bandModel];
       };
+      Get["venues/delete/{id}"] = parameters => {
+        Venue venueToDelete = Venue.FindById(parameters.id);
+        return View["deleteVenue.cshtml", venueToDelete];
+      };
+      Delete["venues/delete/{id}"] = parameters => {
+        Venue venueToDelete = Venue.FindById(parameters.id);
+        venueToDelete.DeleteThis();
+        List<Venue> venueModel = Venue.GetAll();
+        return View["venues.cshtml", venueModel];
+      };
     }
   }
 }
