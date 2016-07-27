@@ -149,17 +149,17 @@ namespace BandTracker
       SqlCommand cmd = new SqlCommand ("DELETE FROM bands;", conn);
       cmd.ExecuteNonQuery();
     }
-    // public void DeleteThis()
-    // {
-    //   SqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //   SqlCommand cmd = new SqlCommand ("DELETE FROM bands WHERE id = @BandId;", conn);
-    //   SqlParameter idParameter = new SqlParameter ();
-    //   idParameter.ParameterName = "@BandId";
-    //   idParameter.Value = this.GetId();
-    //   cmd.Parameters.Add(idParameter);
-    //   cmd.ExecuteNonQuery();
-    // }
+    public void DeleteThis()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand ("DELETE FROM bands WHERE id = @BandId;", conn);
+      SqlParameter idParameter = new SqlParameter ();
+      idParameter.ParameterName = "@BandId";
+      idParameter.Value = this.GetId();
+      cmd.Parameters.Add(idParameter);
+      cmd.ExecuteNonQuery();
+    }
     //
     // public void UpdateBandName(string newName)
     // {
