@@ -60,30 +60,30 @@ namespace BandTracker
       }
       return everyBand;
     }
-    // public void Save()
-    // {
-    //   SqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //   SqlDataReader rdr = null;
-    //   SqlCommand cmd = new SqlCommand ("INSERT INTO bands (name) OUTPUT INSERTED.id VALUES (@BandName);", conn);
-    //   SqlParameter nameParameter = new SqlParameter();
-    //   nameParameter.ParameterName = "@BandName";
-    //   nameParameter.Value = this.GetName();
-    //   cmd.Parameters.Add(nameParameter);
-    //   rdr = cmd.ExecuteReader();
-    //   while (rdr.Read())
-    //   {
-    //    this._id = rdr.GetInt32(0);
-    //   }
-    //   if (rdr != null)
-    //   {
-    //    rdr.Close();
-    //   }
-    //   if (conn != null)
-    //   {
-    //    conn.Close();
-    //   }
-    // }
+    public void Save()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlDataReader rdr = null;
+      SqlCommand cmd = new SqlCommand ("INSERT INTO bands (name) OUTPUT INSERTED.id VALUES (@BandName);", conn);
+      SqlParameter nameParameter = new SqlParameter();
+      nameParameter.ParameterName = "@BandName";
+      nameParameter.Value = this.GetName();
+      cmd.Parameters.Add(nameParameter);
+      rdr = cmd.ExecuteReader();
+      while (rdr.Read())
+      {
+       this._id = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+       rdr.Close();
+      }
+      if (conn != null)
+      {
+       conn.Close();
+      }
+    }
     // public static Band Find (int bandId)
     // {
     //   List<Band> matchingBands = new List<Band> {};
@@ -142,13 +142,13 @@ namespace BandTracker
     //   }
     //   return matchingBands[0];
     // }
-    // public static void DeleteAll()
-    // {
-    //   SqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //   SqlCommand cmd = new SqlCommand ("DELETE FROM bands;", conn);
-    //   cmd.ExecuteNonQuery();
-    // }
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand ("DELETE FROM bands;", conn);
+      cmd.ExecuteNonQuery();
+    }
     // public void DeleteThis()
     // {
     //   SqlConnection conn = DB.Connection();
