@@ -241,5 +241,37 @@ namespace BandTracker
       }
       return venuesPlayed;
     }
+
+    public void AddVenueToHistory(string venueName)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlDataReader rdr = null;
+      SqlCommand cmd = new SqlCommand ("INSERT INTO bands_venues (band_id, venue_id) OUTPUT INSERTED.id VALUES (@BandId, @VenueId);", conn);
+
+      SqlParameter bandIdParameter = new SqlParameter();
+      bandIdParameter.ParameterName = "@BandId";
+      bandIdParameter.Value = this.GetId();
+      cmd.Parameters.Add(bandIdParameter);
+
+      SqlParameter venueIdParameter = new SqlParameter();
+      venueIdParameter.ParameterName = "@VenueId";
+      venueIdParameter.Value = Venue.FindByVenueName(venueName).GetId();
+      cmd.Parameters.Add(venueIdParameter);
+
+      rdr = cmd.ExecuteReader();
+      while (rdr.Read())
+      {
+       this._id = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+       rdr.Close();
+      }
+      if (conn != null)
+      {
+       conn.Close();
+      }
+    }
   }
 }

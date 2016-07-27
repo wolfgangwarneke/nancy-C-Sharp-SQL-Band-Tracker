@@ -84,64 +84,64 @@ namespace BandTracker
     //    conn.Close();
     //   }
     // }
-    // public static Venue Find (int venueId)
-    // {
-    //   List<Venue> matchingVenues = new List<Venue> {};
-    //   SqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //   SqlDataReader rdr = null;
-    //   SqlCommand cmd = new SqlCommand ("SELECT * FROM venues WHERE id = @VenueId;", conn);
-    //   SqlParameter idParameter = new SqlParameter ();
-    //   idParameter.ParameterName = "@VenueId";
-    //   idParameter.Value = venueId;
-    //   cmd.Parameters.Add(idParameter);
-    //   rdr = cmd.ExecuteReader();
-    //   while (rdr.Read())
-    //   {
-    //     int id = rdr.GetInt32(0);
-    //     string name = rdr.GetString(1);
-    //     Venue newVenue = new Venue (name, id);
-    //     matchingVenues.Add(newVenue);
-    //   }
-    //   if (rdr != null)
-    //   {
-    //     rdr.Close();
-    //   }
-    //   if (conn != null)
-    //   {
-    //     conn.Close();
-    //   }
-    //   return matchingVenues[0];
-    // }
-    // public static Venue FindByName (string venueName)
-    // {
-    //   List<Venue> matchingVenues = new List<Venue> {};
-    //   SqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //   SqlDataReader rdr = null;
-    //   SqlCommand cmd = new SqlCommand ("SELECT * FROM venues WHERE name = @VenueName;", conn);
-    //   SqlParameter nameParameter = new SqlParameter ();
-    //   nameParameter.ParameterName = "@VenueName";
-    //   nameParameter.Value = venueName;
-    //   cmd.Parameters.Add(nameParameter);
-    //   rdr = cmd.ExecuteReader();
-    //   while (rdr.Read())
-    //   {
-    //     int id = rdr.GetInt32(0);
-    //     string name = rdr.GetString(1);
-    //     Venue newVenue = new Venue (name, id);
-    //     matchingVenues.Add(newVenue);
-    //   }
-    //   if (rdr != null)
-    //   {
-    //     rdr.Close();
-    //   }
-    //   if (conn != null)
-    //   {
-    //     conn.Close();
-    //   }
-    //   return matchingVenues[0];
-    // }
+    public static Venue FindById (int venueId)
+    {
+      List<Venue> matchingVenues = new List<Venue> {};
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlDataReader rdr = null;
+      SqlCommand cmd = new SqlCommand ("SELECT * FROM venues WHERE id = @VenueId;", conn);
+      SqlParameter idParameter = new SqlParameter ();
+      idParameter.ParameterName = "@VenueId";
+      idParameter.Value = venueId;
+      cmd.Parameters.Add(idParameter);
+      rdr = cmd.ExecuteReader();
+      while (rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        Venue newVenue = new Venue (name, id);
+        matchingVenues.Add(newVenue);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return matchingVenues[0];
+    }
+    public static Venue FindByVenueName (string venueName)
+    {
+      List<Venue> matchingVenues = new List<Venue> {};
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlDataReader rdr = null;
+      SqlCommand cmd = new SqlCommand ("SELECT * FROM venues WHERE name = @VenueName;", conn);
+      SqlParameter nameParameter = new SqlParameter ();
+      nameParameter.ParameterName = "@VenueName";
+      nameParameter.Value = venueName;
+      cmd.Parameters.Add(nameParameter);
+      rdr = cmd.ExecuteReader();
+      while (rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        Venue newVenue = new Venue (name, id);
+        matchingVenues.Add(newVenue);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return matchingVenues[0];
+    }
     // public static void DeleteAll()
     // {
     //   SqlConnection conn = DB.Connection();
@@ -160,7 +160,7 @@ namespace BandTracker
     //   cmd.Parameters.Add(idParameter);
     //   cmd.ExecuteNonQuery();
     // }
-    //
+
     // public void UpdateVenueName(string newName)
     // {
     //   SqlConnection conn = DB.Connection();

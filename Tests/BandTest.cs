@@ -92,6 +92,14 @@ namespace BandTracker
         List<Venue> testVenuesList = saveThisBand.GetVenuesPlayed();
         Assert.Equal(0, testVenuesList.Count);
       }
+    [Fact]
+    public void Test_AddVenueToHistory_SaveVenueIdAndBandIdToDatabase()
+    {
+      Band saveThisBand = new Band("Catnip Stevens");
+      saveThisBand.Save();
+      Venue testVenue = new Venue("Meow That's What I Call Mewsic");
+      testVenue.Save();
+    }
     public void Dispose()
     {
       Band.DeleteAll();
