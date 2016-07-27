@@ -89,7 +89,7 @@ namespace BandTracker
       {
         Band saveThisBand = new Band("Catnip Stevens");
         saveThisBand.Save();
-        List<Venue> testVenuesList = BandsVenues.GetAllBandsVenues(saveThisBand.GetId());
+        List<Venue> testVenuesList = saveThisBand.GetVenuesPlayed();
         Assert.Equal(0, testVenuesList.Count);
       }
     [Fact]
@@ -100,7 +100,7 @@ namespace BandTracker
         Venue testVenue = new Venue("Meow That's What I Call Mewsic");
         testVenue.Save();
         saveThisBand.AddVenueToHistory("Meow That's What I Call Mewsic");
-        List<Venue> testVenueList = BandsVenues.GetAllBandsVenues(saveThisBand.GetId());
+        List<Venue> testVenueList = saveThisBand.GetVenuesPlayed();
         List<Venue> expectedVenueList = new List<Venue> { testVenue };
         Assert.Equal(expectedVenueList, testVenueList);
       }
@@ -115,8 +115,9 @@ namespace BandTracker
         Venue secondTestVenue = new Venue("The I Can Haz");
         secondTestVenue.Save();
         saveThisBand.AddVenueToHistory("The I Can Haz");
-        List<Venue> testVenueList = BandsVenues.GetAllBandsVenues(saveThisBand.GetId());
+        List<Venue> testVenueList = saveThisBand.GetVenuesPlayed();
         List<Venue> expectedVenueList = new List<Venue> { testVenue, secondTestVenue };
+
         Assert.Equal(expectedVenueList, testVenueList);
       }
     public void Dispose()

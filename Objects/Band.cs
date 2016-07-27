@@ -209,44 +209,44 @@ namespace BandTracker
       }
     }
 
-    // public List<Venue> GetVenuesPlayed()
-    // {
-    //   SqlConnection conn = DB.Connection();
-    //   conn.Open();
-    //
-    //   SqlCommand cmd = new SqlCommand("SELECT venues.* FROM bands JOIN bands_venues ON (bands.id = bands_venues.venue_id) JOIN venues ON (bands_venues.venue_id = venues.id) WHERE bands.id = @BandId", conn);
-    //   SqlParameter bandsId = new SqlParameter();
-    //   bandsId.ParameterName = "@BandId";
-    //   bandsId.Value = this.GetId().ToString();
-    //   cmd.Parameters.Add(bandsId);
-    //   SqlDataReader rdr = cmd.ExecuteReader();
-    //
-    //   List<Venue> venuesPlayed = new List<Venue>{};
-    //
-    //   while(rdr.Read())
-    //   {
-    //     int venueId = rdr.GetInt32(0);
-    //     string venueName = rdr.GetString(1);
-    //     Venue newVenue = new Venue(venueName, venueId);
-    //     venuesPlayed.Add(newVenue);
-    //   }
-    //
-    //   if (rdr != null)
-    //   {
-    //     rdr.Close();
-    //   }
-    //   if (conn != null)
-    //   {
-    //     conn.Close();
-    //   }
-    //   return venuesPlayed;
-    // }
+    public List<Venue> GetVenuesPlayed()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT venues.* FROM bands JOIN bands_venues ON (bands.id = bands_venues.band_id) JOIN venues ON (bands_venues.venue_id = venues.id) WHERE bands.id = @BandId;", conn);
+      SqlParameter bandsId = new SqlParameter();
+      bandsId.ParameterName = "@BandId";
+      bandsId.Value = this.GetId().ToString();
+      cmd.Parameters.Add(bandsId);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Venue> venuesPlayed = new List<Venue>{};
+
+      while(rdr.Read())
+      {
+        int venueId = rdr.GetInt32(0);
+        string venueName = rdr.GetString(1);
+        Venue newVenue = new Venue(venueName, venueId);
+        venuesPlayed.Add(newVenue);
+        Console.WriteLine("reading");
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return venuesPlayed;
+    }
 
     public void AddVenueToHistory(string venueName)
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlDataReader rdr = null;
       SqlCommand cmd = new SqlCommand ("INSERT INTO bands_venues (band_id, venue_id) OUTPUT INSERTED.id VALUES (@BandId, @VenueId);", conn);
 
       SqlParameter bandIdParameter = new SqlParameter();
@@ -258,20 +258,8 @@ namespace BandTracker
       venueIdParameter.ParameterName = "@VenueId";
       venueIdParameter.Value = Venue.FindByVenueName(venueName).GetId();
       cmd.Parameters.Add(venueIdParameter);
-
-      rdr = cmd.ExecuteReader();
-      while (rdr.Read())
-      {
-       this._id = rdr.GetInt32(0);
-      }
-      if (rdr != null)
-      {
-       rdr.Close();
-      }
-      if (conn != null)
-      {
-       conn.Close();
-      }
+      cmd.ExecuteNonQuery();
+      conn.Close();
     }
   }
 }
