@@ -73,6 +73,17 @@ namespace BandTracker
         Band foundBand = Band.FindByName(nameToFindBy);
         Assert.Equal(expectedBandToFind, foundBand);
       }
+    [Fact]
+      public void Test_UpdateBandName_ChangeNameFrom()
+      {
+        Band firstBand = new Band("DeadEgyptianMau5");
+        firstBand.Save();
+        Band secondBand = new Band("Purrs for Furs");
+        secondBand.Save();
+        firstBand.UpdateBandName("Abyssinian");
+        Band firstBandFromDatabase = Band.Find(firstBand.GetId());
+        Assert.Equal("Abyssinian", firstBandFromDatabase.GetName());
+      }
     public void Dispose()
     {
       Band.DeleteAll();
