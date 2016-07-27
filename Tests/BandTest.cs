@@ -104,9 +104,29 @@ namespace BandTracker
         List<Venue> expectedVenueList = new List<Venue> { testVenue };
         Assert.Equal(expectedVenueList, testVenueList);
       }
+    [Fact]
+      public void Test_Add2VenuesToHistory_SaveVenueIdAndBandIdToDatabase()
+      {
+        Band saveThisBand = new Band("Catnip Stevens");
+        saveThisBand.Save();
+        Venue testVenue = new Venue("Meow That's What I Call Mewsic");
+        testVenue.Save();
+        saveThisBand.AddVenueToHistory("Meow That's What I Call Mewsic");
+        Venue secondTestVenue = new Venue("The I Can Haz");
+        secondTestVenue.Save();
+        saveThisBand.AddVenueToHistory("The I Can Haz");
+        List<Venue> testVenueList = BandsVenues.GetAllBandsVenues(saveThisBand.GetId());
+        List<Venue> expectedVenueList = new List<Venue> { testVenue, secondTestVenue };
+        Assert.Equal(expectedVenueList, testVenueList);
+      }
     public void Dispose()
     {
       Band.DeleteAll();
+      Venue.DeleteAll();
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand ("DELETE FROM bands_venues;", conn);
+      cmd.ExecuteNonQuery();
     }
   }
 }
