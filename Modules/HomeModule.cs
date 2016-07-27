@@ -29,12 +29,14 @@ namespace BandTracker
       Post["/bands/add"] = _ => {
         Band newBand = new Band(Request.Form["band-name"]);
         newBand.Save();
-        return View["index.cshtml"];
+        List<Band> bandModel = Band.GetAll();
+        return View["bands.cshtml", bandModel];
       };
       Post["/venues/add"] = _ => {
         Venue newVenue = new Venue(Request.Form["venue-name"]);
         newVenue.Save();
-        return View["index.cshtml"];
+        List<Venue> venueModel = Venue.GetAll();
+        return View["venues.cshtml", venueModel];
       };
       Get["/bands/venues/{id}"] = parameters => {
         Band bandModel = Band.Find(parameters.id);
@@ -71,6 +73,16 @@ namespace BandTracker
         model.Add("venue", venueToAddTo);
         model.Add("bands", allBands);
         return View["venuesBands.cshtml", model];
+      };
+      Get["bands/delete/{id}"] = parameters => {
+        Band bandToDelete = Band.Find(parameters.id);
+        return View["deleteBand.cshtml", bandToDelete];
+      };
+      Delete["bands/delete/{id}"] = parameters => {
+        Band bandToDelete = Band.Find(parameters.id);
+        bandToDelete.DeleteThis();
+        List<Band> bandModel = Band.GetAll();
+        return View["bands.cshtml", bandModel];
       };
     }
   }
