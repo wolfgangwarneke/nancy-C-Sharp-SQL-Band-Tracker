@@ -1,0 +1,6 @@
+<ul>
+@foreach(var venue in Model) {
+  <li>@venue.GetName() <a href="/venues/bands/@venue.GetId()">see bands who have played a show at @venue.GetName()</a></li>
+}
+</ul>
+<a href="venues/add">Add a venue</a>

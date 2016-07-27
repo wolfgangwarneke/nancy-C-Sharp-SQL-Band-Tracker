@@ -209,26 +209,26 @@ namespace BandTracker
       }
     }
 
-    public List<Venue> GetBandsPlayed()
+    public List<Band> GetBandsPlayed()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT venues.* FROM bands JOIN bands_venues ON (bands.id = bands_venues.band_id) JOIN venues ON (bands_venues.venue_id = venues.id) WHERE venues.id = @VenueId;", conn);
+      SqlCommand cmd = new SqlCommand("SELECT bands.* FROM bands JOIN bands_venues ON (bands.id = bands_venues.band_id) JOIN venues ON (bands_venues.venue_id = venues.id) WHERE venues.id = @VenueId;", conn);
       SqlParameter bandsId = new SqlParameter();
       bandsId.ParameterName = "@VenueId";
       bandsId.Value = this.GetId().ToString();
       cmd.Parameters.Add(bandsId);
       SqlDataReader rdr = cmd.ExecuteReader();
 
-      List<Venue> venuesPlayed = new List<Venue>{};
+      List<Band> bandsPlayed = new List<Band>{};
 
       while(rdr.Read())
       {
-        int venueId = rdr.GetInt32(0);
-        string venueName = rdr.GetString(1);
-        Venue newVenue = new Venue(venueName, venueId);
-        venuesPlayed.Add(newVenue);
+        int bandId = rdr.GetInt32(0);
+        string bandName = rdr.GetString(1);
+        Band newBand = new Band(bandName, bandId);
+        bandsPlayed.Add(newBand);
       }
 
       if (rdr != null)
@@ -239,7 +239,7 @@ namespace BandTracker
       {
         conn.Close();
       }
-      return venuesPlayed;
+      return bandsPlayed;
     }
 
     public void AddBandToHistory(string bandName)

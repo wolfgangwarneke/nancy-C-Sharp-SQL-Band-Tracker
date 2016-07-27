@@ -1,0 +1,19 @@
+<h2>@Model["venue"].GetName() has hosted these <em>fantastic</em> bands...</h2>
+<ul>
+@foreach (var band in Model["venue"].GetBandsPlayed())
+{
+  <li>@band.GetName()</li>
+}
+</ul>
+
+<h4>Add band</h4>
+<form action="/venues/bands/add/@Model["venue"].GetId()" method="post">
+  <select name="band">
+    @foreach (var band in Model["bands"])
+    {
+    <option value="@band.GetName()">@band.GetName()</option>
+    }
+  </select>
+  <button type="submit">Add</button>
+</form>
+<h5><a href="/">Home</a></h5>
