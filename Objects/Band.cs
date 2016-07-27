@@ -34,7 +34,7 @@ namespace BandTracker
     {
       return _name;
     }
-    
+
     public static List<Band> GetAll()
     {
       List<Band> everyBand = new List<Band>{};
@@ -194,19 +194,19 @@ namespace BandTracker
     //   }
     // }
     //
-    // public override bool Equals(System.Object otherBand)
-    // {
-    //   if (otherBand is Band)
-    //   {
-    //    Band newBand = (Band) otherBand;
-    //    bool idEquality = (this.GetId() == newBand.GetId());
-    //    bool nameEquality = (this.GetName() == newBand.GetName());
-    //    return (idEquality && nameEquality);
-    //   }
-    //   else
-    //   {
-    //    return false;
-    //   }
-    // }
+    public override bool Equals(System.Object otherBand)
+    {
+      if (otherBand is Band)
+      {
+       Band newBand = (Band) otherBand;
+       bool idEquality = (this.GetId() == newBand.GetId());
+       bool nameEquality = (this.GetName() == newBand.GetName());
+       return (idEquality && nameEquality);
+      }
+      else
+      {
+       return false;
+      }
+    }
   }
 }
