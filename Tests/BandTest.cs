@@ -84,6 +84,14 @@ namespace BandTracker
         Band firstBandFromDatabase = Band.Find(firstBand.GetId());
         Assert.Equal("Abyssinian", firstBandFromDatabase.GetName());
       }
+    [Fact]
+      public void Test_GetVenuesPlayed_ReturnEmptyVenueList()
+      {
+        Band saveThisBand = new Band("Catnip Stevens");
+        saveThisBand.Save();
+        List<Venue> testVenuesList = saveThisBand.GetVenuesPlayed();
+        Assert.Equal(0, testVenuesList.Count);
+      }
     public void Dispose()
     {
       Band.DeleteAll();

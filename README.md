@@ -25,8 +25,8 @@ _(names used in actual tests may vary. the more puns = the merrier)_
 | Returns band by band id | Find() | (database of bands contains: "The Paw-Lice" with id of 9 and "Here Kitty Kitty" with id of 4) Band.Find(9) | Band object for "Here Kitty Kitty" |
 | Returns band by band name | FindByName() | (database of bands contains: "The Paw-Lice" and "Here Kitty Kitty Kitty") Band.FindByName("Here Kitty Kitty Kitty") | Band object for "Here Kitty Kitty" |
 | Changes band name to a new inputted name | UpdateName() | (band is called "Siamese Dream", gets sued by Billy Corgan from the Smashing Pumpkins for copyright infringement) this.UpdateName("The Bengals") | Band name is changed to The Bengals |
-| bands_venues database is initially empty | GetAllPreviousVenues() | n/a | Count of entries list is 0. |
-| Adds a band associated with venue called upon to bands_venues | AddVenueToHistory() | (band calling function is "The Fat Cats" with id of 5) venue: "Canary Hall", venue_id: 4 | band_id 5 and venue_id4 are recorded to bands_venues database; GetAllPreviousBands() returns list with count of 1 |
+| bands_venues database is initially empty | GetVenuesPlayed() | n/a | Count of entries list is 0. |
+| Adds a band associated with venue called upon to bands_venues | AddVenueToHistory() | (band calling function is "The Fat Cats" with id of 5) venue: "Canary Hall", venue_id: 4 | band_id 5 and venue_id4 are recorded to bands_venues database; GetVenuesPlayed() returns list with count of 1 |
 | Returns all venues which band has played | GetAllPreviousVenuesByName() | First venue name: "The Kitten Kaboodle" id: 4; second venue name: "The Feel Line" id: 0 (band "The Technicolor Dream Cats" adds both venues to its history) | returns list of the venue names |
 
 #### Venue Tests
