@@ -89,21 +89,21 @@ namespace BandTracker
       {
         Band saveThisBand = new Band("Catnip Stevens");
         saveThisBand.Save();
-        List<Venue> testVenuesList = saveThisBand.GetVenuesPlayed();
+        List<Venue> testVenuesList = BandsVenues.GetAllBandsVenues(saveThisBand.GetId());
         Assert.Equal(0, testVenuesList.Count);
       }
     [Fact]
-    public void Test_AddVenueToHistory_SaveVenueIdAndBandIdToDatabase()
-    {
-      Band saveThisBand = new Band("Catnip Stevens");
-      saveThisBand.Save();
-      Venue testVenue = new Venue("Meow That's What I Call Mewsic");
-      testVenue.Save();
-      saveThisBand.AddVenueToHistory("Meow That's What I Call Mewsic");
-      List<Venue> testVenueList = saveThisBand.GetVenuesPlayed();
-      List<Venue> expectedVenueList = new List<Venue> { testVenue };
-      Assert.Equal(expectedVenueList, testVenueList);
-    }
+      public void Test_AddVenueToHistory_SaveVenueIdAndBandIdToDatabase()
+      {
+        Band saveThisBand = new Band("Catnip Stevens");
+        saveThisBand.Save();
+        Venue testVenue = new Venue("Meow That's What I Call Mewsic");
+        testVenue.Save();
+        saveThisBand.AddVenueToHistory("Meow That's What I Call Mewsic");
+        List<Venue> testVenueList = BandsVenues.GetAllBandsVenues(saveThisBand.GetId());
+        List<Venue> expectedVenueList = new List<Venue> { testVenue };
+        Assert.Equal(expectedVenueList, testVenueList);
+      }
     public void Dispose()
     {
       Band.DeleteAll();

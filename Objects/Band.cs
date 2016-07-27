@@ -209,38 +209,38 @@ namespace BandTracker
       }
     }
 
-    public List<Venue> GetVenuesPlayed()
-    {
-      SqlConnection conn = DB.Connection();
-      conn.Open();
-
-      SqlCommand cmd = new SqlCommand("SELECT venues.* FROM bands JOIN bands_venues ON (bands.id = bands_venues.venue_id) JOIN venues ON (bands_venues.venue_id = venues.id) WHERE bands.id = @BandId", conn);
-      SqlParameter bandsId = new SqlParameter();
-      bandsId.ParameterName = "@BandId";
-      bandsId.Value = this.GetId().ToString();
-      cmd.Parameters.Add(bandsId);
-      SqlDataReader rdr = cmd.ExecuteReader();
-
-      List<Venue> venuesPlayed = new List<Venue>{};
-
-      while(rdr.Read())
-      {
-        int venueId = rdr.GetInt32(0);
-        string venueName = rdr.GetString(1);
-        Venue newVenue = new Venue(venueName, venueId);
-        venuesPlayed.Add(newVenue);
-      }
-
-      if (rdr != null)
-      {
-        rdr.Close();
-      }
-      if (conn != null)
-      {
-        conn.Close();
-      }
-      return venuesPlayed;
-    }
+    // public List<Venue> GetVenuesPlayed()
+    // {
+    //   SqlConnection conn = DB.Connection();
+    //   conn.Open();
+    //
+    //   SqlCommand cmd = new SqlCommand("SELECT venues.* FROM bands JOIN bands_venues ON (bands.id = bands_venues.venue_id) JOIN venues ON (bands_venues.venue_id = venues.id) WHERE bands.id = @BandId", conn);
+    //   SqlParameter bandsId = new SqlParameter();
+    //   bandsId.ParameterName = "@BandId";
+    //   bandsId.Value = this.GetId().ToString();
+    //   cmd.Parameters.Add(bandsId);
+    //   SqlDataReader rdr = cmd.ExecuteReader();
+    //
+    //   List<Venue> venuesPlayed = new List<Venue>{};
+    //
+    //   while(rdr.Read())
+    //   {
+    //     int venueId = rdr.GetInt32(0);
+    //     string venueName = rdr.GetString(1);
+    //     Venue newVenue = new Venue(venueName, venueId);
+    //     venuesPlayed.Add(newVenue);
+    //   }
+    //
+    //   if (rdr != null)
+    //   {
+    //     rdr.Close();
+    //   }
+    //   if (conn != null)
+    //   {
+    //     conn.Close();
+    //   }
+    //   return venuesPlayed;
+    // }
 
     public void AddVenueToHistory(string venueName)
     {
