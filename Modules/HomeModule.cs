@@ -94,6 +94,26 @@ namespace BandTracker
         List<Venue> venueModel = Venue.GetAll();
         return View["venues.cshtml", venueModel];
       };
+      Get["bands/edit/{id}"] = parameters => {
+        Band bandToUpdate = Band.Find(parameters.id);
+        return View["updateBand.cshtml", bandToUpdate];
+      };
+      Patch["bands/edit/{id}"] = parameters => {
+        Band bandToUpdate = Band.Find(parameters.id);
+        bandToUpdate.UpdateBandName(Request.Form["band-name"]);
+        List<Band> bandModel = Band.GetAll();
+        return View["bands.cshtml", bandModel];
+      };
+      Get["venues/edit/{id}"] = parameters => {
+        Venue venueToUpdate = Venue.FindById(parameters.id);
+        return View["updateVenue.cshtml", venueToUpdate];
+      };
+      Patch["venues/edit/{id}"] = parameters => {
+        Venue venueToUpdate = Venue.FindById(parameters.id);
+        venueToUpdate.UpdateVenueName(Request.Form["venue-name"]);
+        List<Venue> venueModel = Venue.GetAll();
+        return View["venues.cshtml", venueModel];
+      };
     }
   }
 }
