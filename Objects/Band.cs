@@ -34,32 +34,32 @@ namespace BandTracker
     {
       return _name;
     }
-    //
-    // public static List<Band> GetAll()
-    // {
-    //   List<Band> everyBand = new List<Band>{};
-    //   SqlConnection conn = DB.Connection();
-    //   SqlDataReader rdr = null;
-    //   conn.Open();
-    //   SqlCommand cmd = new SqlCommand("SELECT * FROM bands;", conn);
-    //   rdr = cmd.ExecuteReader();
-    //   while(rdr.Read())
-    //   {
-    //     int bandId = rdr.GetInt32(0);
-    //     string bandName = rdr.GetString(1);
-    //     Band readBand = new Band(bandName, bandId);
-    //     everyBand.Add(readBand);
-    //   }
-    //   if (rdr != null)
-    //   {
-    //     rdr.Close();
-    //   }
-    //   if (conn != null)
-    //   {
-    //     conn.Close();
-    //   }
-    //   return everyBand;
-    // }
+    
+    public static List<Band> GetAll()
+    {
+      List<Band> everyBand = new List<Band>{};
+      SqlConnection conn = DB.Connection();
+      SqlDataReader rdr = null;
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("SELECT * FROM bands;", conn);
+      rdr = cmd.ExecuteReader();
+      while(rdr.Read())
+      {
+        int bandId = rdr.GetInt32(0);
+        string bandName = rdr.GetString(1);
+        Band readBand = new Band(bandName, bandId);
+        everyBand.Add(readBand);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return everyBand;
+    }
     // public void Save()
     // {
     //   SqlConnection conn = DB.Connection();
