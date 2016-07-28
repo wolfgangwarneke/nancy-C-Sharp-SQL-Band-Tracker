@@ -58,8 +58,7 @@ _(names used in actual tests may vary. the more puns = the merrier)_
 * Clone the repository and navigate to it in the command line
 * Run `dnu restore`
 * Open Microsoft SQL Server Management Studio
-* Select 'new query'...
-_...and execute the following SQL query:_
+* Select 'new query' and execute the following SQL query:_
 ~~~~
 CREATE DATABASE band_tracker;
 GO
