@@ -1,6 +1,6 @@
 # Band Tracker 6000
 
-#### Keep track of venues the bands that play them, July 27nd, 2016_
+#### Keep track of *venues* and *the* bands that play them, July 27nd, 2016_
 
 #### By Wolfgang Warneke
 
