@@ -54,14 +54,38 @@ _(names used in actual tests may vary. the more puns = the merrier)_
 
 ## Setup/Installation Requirements
 
-* Snap Your Fingers
-* Do Your Stuff
+* Install the Nancy framework (if you haven't already)
+* Clone the repository and navigate to it in the command line
+* Run `dnu restore`
+* Open Microsoft SQL Server Management Studio
+* Select 'new query'...
+_...and execute the following SQL query:_
+~~~~
+CREATE DATABASE band_tracker;
+GO
+USE band_tracker;
+GO
+CREATE TABLE bands (id INT IDENTITY(1,1), name VARCHAR(80));
+CREATE TABLE venues (id INT IDENTITY(1,1), name VARCHAR(80));
+CREATE TABLE bands_venues (id INT, band_id INT, venue_id INT);
+GO
 
-_I'm going to tell you what to do. Don't worry._
+CREATE DATABASE band_tracker_test;
+GO
+USE band_tracker;
+GO
+CREATE TABLE bands (id INT IDENTITY(1,1), name VARCHAR(80));
+CREATE TABLE venues (id INT IDENTITY(1,1), name VARCHAR(80));
+CREATE TABLE bands_venues (id INT, band_id INT, venue_id INT);
+GO
+~~~~
+* run `dnx kestrel`
+* open up http://localhost:5004 in your web browser
+* explore the *Band Tracker 6000* and have fun!
 
 ## Known Bugs
 
-_The only good bug is an nonexistent bug._
+_No known bugs to date._
 
 ## Support and contact details
 
