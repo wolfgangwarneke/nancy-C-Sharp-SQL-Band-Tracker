@@ -4,4 +4,10 @@
 }
 </ul>
 <a href="/venues/add">Add a venue</a>
-<a href="/">Go home</a>
+<a href="/">Go home</a><br>
+<form action="/venues/delete/all" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <label for="confirm">Confirm delation of all venues (<em>cannot be undone!</em>)</label>
+  <input type="checkbox" name="confirm">
+  <button type="submit">Remove All Venues</button>
+</form>

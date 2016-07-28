@@ -126,6 +126,11 @@ namespace BandTracker
         List<Venue> venueModel = Venue.GetAll();
         return View["venues.cshtml", venueModel];
       };
+      Delete["venues/delete/all"] = _ => {
+        if(Request.Form["confirm"]) Venue.DeleteAll();
+        List<Venue> venueModel = Venue.GetAll();
+        return View["venues.cshtml", venueModel];
+      };
       Get["bands/edit/{id}"] = parameters => {
         Band bandToUpdate = Band.Find(parameters.id);
         return View["updateBand.cshtml", bandToUpdate];

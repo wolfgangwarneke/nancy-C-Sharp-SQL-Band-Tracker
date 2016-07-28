@@ -19,6 +19,7 @@ This is a project for my C# class at Epicodus. Remember than one show? Me either
 | Delete venue from database | select and comfirm deletion of "The Milky Wayside" entry | "The Milky Wayside" is removed from database |
 | Update band name | selected: "The Neutered Tomcats", new name: "Felinious Manx" | The object of "The Neatered Tomcats" now has name property of "Felinious Manx" |
 | Update venue name | selected: "The Milky Wayside", new name: "The Fat Cat Lagoon" | The object of "The Milky Wayside" now has name property of "The Fat Cat Lagoon" |
+| Remove all venues from database | click 'REMOVE ALL VENUES' | all venues will be deleted from database. (must've been a healthcode violation or something) |
 ### Test Specifications
 _(names used in actual tests may vary. the more puns = the merrier)_
 #### Band Tests
@@ -58,7 +59,7 @@ _(names used in actual tests may vary. the more puns = the merrier)_
 * Clone the repository and navigate to it in the command line
 * Run `dnu restore`
 * Open Microsoft SQL Server Management Studio
-* Select 'new query' and execute the following SQL query:_
+* Select 'new query' and execute the following SQL query:
 ~~~~
 CREATE DATABASE band_tracker;
 GO
