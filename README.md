@@ -12,6 +12,13 @@ This is a project for my C# class at Epicodus. Remember than one show? Me either
 ### General Specifications
 | Behavior        | Input           | Outcome  |
 | ------------- |:-------------:| -----:|
+| Adds band to database | "The Neutered Tomcats" | "The Neutered Tomcats" is displayed in all bands list |
+| Adds venue to database | "The Milky Wayside" | "The Milky Wayside" is displayed in all bands list |
+| Simultaneously adds venue to a band's venues list and adds band to a venue's list of bands it has hosted | select "The Neutered Tomcats" from "The Milky Wayside" | "The Milky Wayside" is displayed in the band's venues list and, conversely, "The Neutered Tomcats" are displayed in the venue's bands list |
+| Delete band from database | select and confirm deletion of "The Neutered Tomcats" entry | "The Neutered Tomcats" is removed from database |
+| Delete venue from database | select and comfirm deletion of "The Milky Wayside" entry | "The Milky Wayside" is removed from database |
+| Update band name | selected: "The Neutered Tomcats", new name: "Felinious Manx" | The object of "The Neatered Tomcats" now has name property of "Felinious Manx" |
+| Update venue name | selected: "The Milky Wayside", new name: "The Fat Cat Lagoon" | The object of "The Milky Wayside" now has name property of "The Fat Cat Lagoon" |
 ### Test Specifications
 _(names used in actual tests may vary. the more puns = the merrier)_
 #### Band Tests
