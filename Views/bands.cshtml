@@ -1,7 +1,21 @@
-<ul>
-@foreach(var band in Model) {
-  <li>@band.GetName() /// <a href="/bands/venues/@band.GetId()">see venues @band.GetName() has played at</a> /// <a href="/bands/delete/@band.GetId()">REMOVE THIS BAND</a> /// <a href="/bands/edit/@band.GetId()">CHANGE THIS BAND'S NAME</a> ///</li>
+<h1>The Bands.</h1>
+<hr>
+<table>
+@if(Model.Count == 0) {
+  <tr>
+    <td>there are no bands currently :(</td>
+  </tr>
 }
-</ul>
+@foreach(var band in Model) {
+  <tr>
+    <td>@band.GetName()</td>
+    <td><a href="/bands/venues/@band.GetId()">see venues @band.GetName() has played at</a></td>
+    <td><a href="/bands/delete/@band.GetId()">| REMOVE |</a></td>
+    <td><a href="/bands/edit/@band.GetId()">| CHANGE NAME |</a></td>
+  </tr>
+}
+</table>
+<hr>
 <a href="/bands/add">Add a band</a><br>
-<a href="/">Go home</a>
+<a href="/">Go home</a><br>
+<a href="/venues">View all venues</a><br>
