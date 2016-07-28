@@ -1,12 +1,14 @@
 # Band Tracker 6000
 
-#### Keep track of venues the bands that play them, July 22nd, 2016_
+#### Keep track of venues the bands that play them, July 27nd, 2016_
 
 #### By Wolfgang Warneke
 
 ## Description
 
 This is a project for my C# class at Epicodus. Remember than one show? Me either, so let's check out our database of venues and bands to see if we can jog our collective memory. See all bands that have played a venue and when those shows were. See all venues that a band has played. Oh look now I remember, see, remember when Rumpleteaser played a sweet solo set at the Cat's Cradle on April, 20th, 2015? He was pretty sloppy due to his catnip problem around that time, but we still went out for saucers of milk afterword. Classy.
+
+A future version of this could incorporate genres, popularity, specific show history, and have a nice graphical styling.
 
 ## Specifications
 ### General Specifications
@@ -85,7 +87,7 @@ GO
 
 ## Known Bugs
 
-_No known bugs to date._
+_No known bugs to date. (Unless you consider the horrendous lack of CSS a bug.)_
 
 ## Support and contact details
 
