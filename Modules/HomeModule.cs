@@ -41,17 +41,33 @@ namespace BandTracker
       Get["/bands/venues/{id}"] = parameters => {
         Band bandModel = Band.Find(parameters.id);
         List<Venue> allVenues = Venue.GetAll();
+        List<Venue> filteredVenues = new List<Venue> {};
+        foreach (var venue in allVenues)
+        {
+          if (!bandModel.GetVenuesPlayed().Contains(venue))
+          {
+            filteredVenues.Add(venue);
+          }
+        }
         Dictionary<string, object> model = new Dictionary<string, object> {};
         model.Add("band", bandModel);
-        model.Add("venues", allVenues);
+        model.Add("venues", filteredVenues);
         return View["bandsVenues.cshtml", model];
       };
       Get["/venues/bands/{id}"] = parameters => {
         Venue venueModel = Venue.FindById(parameters.id);
         List<Band> allBands = Band.GetAll();
+        List<Band> filteredBands = new List<Band> {};
+        foreach (var band in allBands)
+        {
+          if (!venueModel.GetBandsPlayed().Contains(band))
+          {
+            filteredBands.Add(band);
+          }
+        }
         Dictionary<string, object> model = new Dictionary<string, object> {};
         model.Add("venue", venueModel);
-        model.Add("bands", allBands);
+        model.Add("bands", filteredBands);
         return View["venuesBands.cshtml", model];
       };
       Post["/bands/venues/add/{id}"] = parameters => {
@@ -59,9 +75,17 @@ namespace BandTracker
         string venuePlayed = Request.Form["venue"];
         bandToAddTo.AddVenueToHistory(venuePlayed);
         List<Venue> allVenues = Venue.GetAll();
+        List<Venue> filteredVenues = new List<Venue> {};
+        foreach (var venue in allVenues)
+        {
+          if (!bandToAddTo.GetVenuesPlayed().Contains(venue))
+          {
+            filteredVenues.Add(venue);
+          }
+        }
         Dictionary<string, object> model = new Dictionary<string, object> {};
         model.Add("band", bandToAddTo);
-        model.Add("venues", allVenues);
+        model.Add("venues", filteredVenues);
         return View["bandsVenues.cshtml", model];
       };
       Post["/venues/bands/add/{id}"] = parameters => {
@@ -69,9 +93,17 @@ namespace BandTracker
         string bandPlayed = Request.Form["band"];
         venueToAddTo.AddBandToHistory(bandPlayed);
         List<Band> allBands = Band.GetAll();
+        List<Band> filteredBands = new List<Band> {};
+        foreach (var band in allBands)
+        {
+          if (!venueToAddTo.GetBandsPlayed().Contains(band))
+          {
+            filteredBands.Add(band);
+          }
+        }
         Dictionary<string, object> model = new Dictionary<string, object> {};
         model.Add("venue", venueToAddTo);
-        model.Add("bands", allBands);
+        model.Add("bands", filteredBands);
         return View["venuesBands.cshtml", model];
       };
       Get["bands/delete/{id}"] = parameters => {

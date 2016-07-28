@@ -11,7 +11,7 @@
   <select name="band">
     @foreach (var band in Model["bands"])
     {
-    <option value="@band.GetName()">@band.GetName()</option>
+      <option value="@band.GetName()">@band.GetName()</option>
     }
   </select>
   <button type="submit">Add</button>
